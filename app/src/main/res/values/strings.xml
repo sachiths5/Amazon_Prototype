@@ -1,0 +1,138 @@
+<resources>
+    <string name="app_name">Amazon_prototype2</string>
+    <string name="rufus">Rufus</string>
+    <string name="cart">Cart</string>
+    <string name="menu">Menu</string>
+    <string name="you">You</string>
+    <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="electronics_names">
+        <item>phone_samnsunga71</item>
+        <item>laptop_ideapad5</item>
+        <item>smart_watch</item>
+        <item>bluethoot_speaker</item>
+        <item>wireless_buds</item>
+    </string-array>
+
+    <!-- Product Descriptions -->
+    <string-array name="electronics_descriptions">
+        <item>6.5" Display, 128GB Storage, Dual Camera</item>
+        <item>15.6" FHD, 8GB RAM, 512GB SSD</item>
+        <item>Heart Rate Monitor, AMOLED Display</item>
+        <item>10W Output, Portable, Long Battery Life</item>
+        <item>Bluetooth 5.3, 30H Battery, Touch Controls</item>
+    </string-array>
+
+    <!-- Product Prices -->
+    <string-array name="electronics_prices">
+        <item>14999</item>
+        <item>52999</item>
+        <item>2999</item>
+        <item>1499</item>
+        <item>1799</item>
+    </string-array>
+
+    <!-- Product Image Resource Names -->
+    <string-array name="electronics_images">
+        <item>smartphone_image</item>
+        <item>laptop_image</item>
+        <item>smartwatch_image</item>
+        <item>speaker_image</item>
+        <item>earbuds_image</item>
+    </string-array>
+    <string-array name="grocery_names">
+        <item>Organic Rice</item>
+        <item>Almonds</item>
+        <item>Green Tea</item>
+    </string-array>
+
+    <string-array name="grocery_descriptions">
+        <item>Premium basmati rice - 5kg</item>
+        <item>California almonds - 500g</item>
+        <item>Detox green tea bags - 100 count</item>
+    </string-array>
+
+    <integer-array name="grocery_prices">
+        <item>399</item>
+        <item>299</item>
+        <item>249</item>
+    </integer-array>
+
+    <string-array name="grocery_images">
+        <item>rice</item>
+        <item>almonds</item>
+        <item>greentea</item>
+    </string-array>
+    <string-array name="limited_offer_names">
+        <item>Premium Coffee</item>
+        <item>Noise Smartwatch</item>
+        <item>Fruit Combo Pack</item>
+    </string-array>
+
+    <string-array name="limited_offer_descriptions">
+        <item>Buy 1 Get 1 Free - Premium Coffee 200g</item>
+        <item>Flat 50% Off - Noise Smartwatch with AMOLED display</item>
+        <item>Special Combo - 2kg Mangoes + 1kg Oranges</item>
+    </string-array>
+
+    <integer-array name="limited_offer_prices">
+        <item>199</item>
+        <item>2499</item>
+        <item>349</item>
+    </integer-array>
+
+    <string-array name="limited_offer_images">
+        <item>coffee</item>
+        <item>smartwatch</item>
+        <item>fruits_combo</item>
+    </string-array>
+
+    <string-array name="fashion_names">
+        <item>Cotton T-Shirt</item>
+        <item>Denim Jacket</item>
+        <item>Sneakers</item>
+    </string-array>
+
+    <string-array name="fashion_descriptions">
+        <item>100% cotton round-neck T-shirt</item>
+        <item>Classic blue denim jacket</item>
+        <item>Stylish unisex sneakers</item>
+    </string-array>
+
+    <integer-array name="fashion_prices">
+        <item>499</item>
+        <item>999</item>
+        <item>1499</item>
+    </integer-array>
+
+    <string-array name="fashion_images">
+        <item>tshirt</item>
+        <item>jacket</item>
+        <item>sneakers</item>
+    </string-array>
+    <string-array name="medicine_names">
+        <item>Paracetamol</item>
+        <item>Vitamin C</item>
+        <item>Antiseptic Cream</item>
+    </string-array>
+
+    <string-array name="medicine_descriptions">
+        <item>500mg fever and pain relief tablets</item>
+        <item>Immunity booster chewable tablets</item>
+        <item>Antibacterial antiseptic cream - 30g</item>
+    </string-array>
+
+    <integer-array name="medicine_prices">
+        <item>49</item>
+        <item>199</item>
+        <item>75</item>
+    </integer-array>
+
+    <string-array name="medicine_images">
+        <item>paracetamol</item>
+        <item>vitaminc</item>
+        <item>antiseptic</item>
+    </string-array>
+
+</resources>
