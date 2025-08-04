@@ -12,10 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.amazon_prototype2.R;
+import com.example.amazon_prototype2.activities.MainActivity;
+import com.example.amazon_prototype2.model.CartManager;
 import com.example.amazon_prototype2.model.CategoryDataModel;
 
 import java.util.ArrayList;
@@ -33,6 +39,7 @@ public class Product_Fragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    ArrayList<CategoryDataModel.product_details>cart_list;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -72,6 +79,8 @@ public class Product_Fragment extends Fragment {
         assert getArguments() != null;
         product_detail=new ArrayList<>();
         product_detail = getArguments().getParcelableArrayList("productlist");
+        cart_list=new ArrayList<>();
+
 
     }
 
@@ -82,8 +91,10 @@ public class Product_Fragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_product_, container, false);
         product_recyclerview=view.findViewById(R.id.product_recycler);
         product_recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+
         product_adapter product_adapter=new product_adapter(product_detail,getContext());
         product_recyclerview.setAdapter(product_adapter);
+
 
         return view;
     }static class product_adapter extends RecyclerView.Adapter<product_adapter.viewholder>{
@@ -108,14 +119,53 @@ public class Product_Fragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull viewholder holder, int position) {
             CategoryDataModel.product_details prod=productList.get(position);
+            int s=0;
             try {holder.productimage.setImageResource(prod.getImage());
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            LinearLayout quantityLayout = holder.itemView.findViewById(R.id.quantity_layout);
+            int pos = holder.getAdapterPosition();
             holder.productname.setText(prod.getName());
             holder.productdescription.setText(prod.getDesrciption());
-            holder.productprice.setText(String.valueOf(prod.getPrice()));
+            holder.productprice.setText(String.valueOf("₹"+prod.getPrice()));
+            Button addToCart = holder.itemView.findViewById(R.id.addtocart);
+            holder.addbutton.setOnClickListener(v -> {
+                CategoryDataModel.product_details selectedProduct = productList.get(position);
+                CartManager.addToCart(selectedProduct);
+                Toast.makeText(context, "Added to Cart!", Toast.LENGTH_SHORT).show();
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).updateCartBadge(CartManager.getCartList().size());
+                }
+
+
+            });
+            holder.minusbutton.setOnClickListener(v -> {
+                int pos1=holder.getAdapterPosition();
+                CartManager.removecart(pos1);
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).updateCartBadge(CartManager.getCartList().size());
+                }
+
+            });
+            holder.add_product.setOnClickListener(v -> {
+                CategoryDataModel.product_details selectedProduct = productList.get(position);
+                CartManager.addToCart(selectedProduct);
+
+                quantityLayout.setVisibility(View.VISIBLE);
+
+                // Optional: Set quantity to 1 initially
+                EditText quantityText = holder.itemView.findViewById(R.id.productquantity);
+
+                quantityText.setText("1");
+
+                Toast.makeText(context, "Added to Cart!", Toast.LENGTH_SHORT).show();
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).updateCartBadge(CartManager.getCartList().size());
+                }
+            });
+
 
         }
 
@@ -126,14 +176,19 @@ public class Product_Fragment extends Fragment {
 
         static class viewholder extends RecyclerView.ViewHolder{
             ImageView productimage;
-            TextView productname,productdescription,productprice;
+            TextView productname,productdescription,productprice,quantity;
+
+            Button add_product,addbutton,minusbutton;
             public viewholder(@NonNull View itemView) {
                 super(itemView);
                 productdescription=itemView.findViewById(R.id.product_description);
                 productname=itemView.findViewById(R.id.product_name);
                 productprice=itemView.findViewById(R.id.product_price);
                 productimage=itemView.findViewById(R.id.product_image);
-
+                add_product=itemView.findViewById(R.id.addtocart);
+                addbutton=itemView.findViewById(R.id.addproductid);
+                minusbutton=itemView.findViewById(R.id.productminus);
+                quantity=itemView.findViewById(R.id.productquantity);
             }
         }
     }

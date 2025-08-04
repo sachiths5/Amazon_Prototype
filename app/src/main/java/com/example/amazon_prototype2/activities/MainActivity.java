@@ -9,10 +9,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import com.example.amazon_prototype2.R;
+import com.example.amazon_prototype2.fragments.Aichatbox_Fragment;
 import com.example.amazon_prototype2.fragments.Cart_Fragment;
 import com.example.amazon_prototype2.fragments.HomeFragment;
 import com.example.amazon_prototype2.fragments.Menu_Fragment;
 import com.example.amazon_prototype2.fragments.Profile_Fragment;
+import com.example.amazon_prototype2.model.CartManager;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment profile=new Profile_Fragment();
         Fragment menu=new Menu_Fragment();
         Fragment cart=new Cart_Fragment();
+        Fragment aichat=new Aichatbox_Fragment();
+        bottomNavigationView = findViewById(R.id.bottomid);
+
+        updateCartBadge(CartManager.getCartList().size());
         if(savedInstanceState==null){
             getSupportFragmentManager()
                     .beginTransaction()
@@ -52,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 frag(cart);
 
             }
+            else if (itemid==R.id.rufusid)
+                frag(aichat);
             return true;
         });
     }
@@ -59,6 +68,21 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentid,fragment)
+                .addToBackStack(null)
                 .commit();
     }
+    public void updateCartBadge(int count) {
+        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.cartid);
+        if (count > 0) {
+            badgeDrawable.setVisible(true);
+            badgeDrawable.setNumber(count);
+        } else {
+            badgeDrawable.setVisible(false);
+        }
+    }
+    public void removeBadgeFromCart() {
+        BottomNavigationView nav = findViewById(R.id.bottomid); // replace with your nav ID
+        nav.removeBadge(R.id.cartid);
+    }
+
 }

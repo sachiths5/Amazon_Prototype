@@ -33,8 +33,7 @@ public class Limited_Offer_Fragment extends Fragment {
     RecyclerView limitedoffer_recyclerview;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
     ArrayList<CategoryDataModel.product_details>offers_List;
 
     public Limited_Offer_Fragment() {
@@ -62,10 +61,7 @@ public class Limited_Offer_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
         offers_List=new ArrayList<>();
         String[]offer_name=getResources().getStringArray(R.array.limited_offer_names);
         String[]offer_description=getResources().getStringArray(R.array.limited_offer_descriptions);
@@ -84,11 +80,12 @@ public class Limited_Offer_Fragment extends Fragment {
         View view= inflater.inflate(R.layout.limited_offer_layout, container, false);
         limitedoffer_recyclerview=view.findViewById(R.id.limitedoffer_recyclerview);
         limitedoffer_recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        limitedoffer_adapter limitedofferAdapter=new limitedoffer_adapter(getActivity(),offers_List);
+        limitedoffer_adapter limitedofferAdapter= new limitedoffer_adapter(getActivity(), offers_List);
         limitedoffer_recyclerview.setAdapter(limitedofferAdapter);
         return view;
     }
-    class limitedoffer_adapter extends RecyclerView.Adapter<limitedoffer_adapter.limitedoffer_viewholder>{
+    //Limited Offer category adapter
+    static class limitedoffer_adapter extends RecyclerView.Adapter<limitedoffer_adapter.limitedoffer_viewholder>{
         Context context;
         ArrayList<CategoryDataModel.product_details>offers_List;
 
@@ -120,7 +117,7 @@ public class Limited_Offer_Fragment extends Fragment {
             return offers_List.size();
         }
 
-        class limitedoffer_viewholder extends RecyclerView.ViewHolder{
+        static class limitedoffer_viewholder extends RecyclerView.ViewHolder{
             ImageView offer_image;
             TextView offer_name,offer_description,offer_price;
             public limitedoffer_viewholder(@NonNull View itemView) {

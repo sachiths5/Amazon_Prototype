@@ -42,8 +42,8 @@ Context context;
     @Override
     public void onBindViewHolder(@NonNull recycleradapter holder, int position) {
         CategoryDataModel dat = data.get(position);
-        holder.imageView3.setImageResource(dat.getRecyclerimage());
-        holder.textView3.setText(dat.getText());
+        holder.category_image.setImageResource(dat.getRecyclerimage());
+        holder.category_type.setText(dat.getText());
 
 
     }
@@ -55,13 +55,13 @@ Context context;
     }
 
     class recycleradapter extends RecyclerView.ViewHolder {
-        ImageView imageView3;
-        TextView textView3;
+        ImageView category_image;
+        TextView category_type;
 
         public recycleradapter(@NonNull View itemView, MyClickListener listener, int source) {
             super(itemView);
-            imageView3 = itemView.findViewById(R.id.recyclerimgid);
-            textView3 = itemView.findViewById(R.id.recyclertextid);
+            category_image = itemView.findViewById(R.id.recyclerimgid);
+            category_type = itemView.findViewById(R.id.recyclertextid);
             itemView.setOnClickListener(v -> listener.onclickitem(getAdapterPosition(), Category_Adapter.this.source));
         }
     }
@@ -69,7 +69,7 @@ Context context;
 
  class recyclerdata {
     private String text,title;
-    private int recyclerimage;
+    private int category_image;
 
      public String getTitle() {
          return title;
@@ -79,9 +79,9 @@ Context context;
          this.title = title;
      }
 
-     public recyclerdata(String text, int recyclerimage,String title) {
+     public recyclerdata(String text, int category_image, String title) {
         this.text = text;
-        this.recyclerimage = recyclerimage;
+        this.category_image = category_image;
         this.title=title;
     }
 
@@ -89,15 +89,15 @@ Context context;
         return text;
     }
 
-    public int getRecyclerimage() {
-        return recyclerimage;
+    public int getCategory_image() {
+        return category_image;
     }
 
     public void setText(String text) {
         this.text = text;
     }
 
-    public void setRecyclerimage(int recyclerimage) {
-        this.recyclerimage = recyclerimage;
+    public void setCategory_image(int category_image) {
+        this.category_image = category_image;
     }
 }

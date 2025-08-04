@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CategoryDataModel implements Parcelable {
     private String text, title;
@@ -11,6 +12,18 @@ public class CategoryDataModel implements Parcelable {
 
     // You can optionally add this if you have a list of product_details
     private ArrayList<product_details> productList;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoryDataModel that = (CategoryDataModel) o;
+        return recyclerimage == that.recyclerimage && Objects.equals(text, that.text) && Objects.equals(title, that.title) && Objects.equals(productList, that.productList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, title, recyclerimage, productList);
+    }
 
     public CategoryDataModel(String text, int recyclerimage, String title) {
         this.text = text;

@@ -24,6 +24,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:id="@+id/homemenu"
                 android:src="@drawable/home_icon"
                 android:contentDescription="Home" />
 
@@ -46,6 +47,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:id="@+id/chatmenu"
                 android:src="@drawable/aichat_icon"
                 android:contentDescription="Orders" />
 
@@ -69,6 +71,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/cart_icon"
+                android:id="@+id/cartmenu"
                 android:contentDescription="Cart" />
 
             <TextView
@@ -110,6 +113,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:id="@+id/cartmenu2"
                 android:src="@drawable/cart_icon"
                 android:contentDescription="Cart" />
 

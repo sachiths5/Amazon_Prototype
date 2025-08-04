@@ -1,5 +1,6 @@
   package com.example.amazon_prototype2.fragments;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.amazon_prototype2.R;
 
@@ -60,6 +62,34 @@ public class Menu_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.menu_fragment_layout, container, false);
+        ImageView home,chatbox,cart,cart2;
+
+        View view= inflater.inflate(R.layout.menu_fragment_layout, container, false);
+        home=view.findViewById(R.id.homemenu);
+        chatbox=view.findViewById(R.id.chatmenu);
+        cart=view.findViewById(R.id.cartmenu);
+        cart2=view.findViewById(R.id.cartmenu2);
+        home.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentid,new HomeFragment())
+                    .commit();
+        });chatbox.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentid,new Aichatbox_Fragment())
+                    .commit();
+        });cart.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentid,new Cart_Fragment())
+                    .commit();
+        });cart2.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentid,new Cart_Fragment())
+                    .commit();
+        });
+        return view;
     }
 }

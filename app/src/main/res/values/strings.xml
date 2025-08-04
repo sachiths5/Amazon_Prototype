@@ -8,11 +8,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="electronics_names">
-        <item>phone_samnsunga71</item>
-        <item>laptop_ideapad5</item>
-        <item>smart_watch</item>
-        <item>bluethoot_speaker</item>
-        <item>wireless_buds</item>
+        <item>Samnsung 71</item>
+        <item>Lenovo ideapad5</item>
+        <item>Samsung Galaxy Watch8</item>
+        <item>Bose Bluethoot Speaker</item>
+        <item>JBL Wireless Buds</item>
     </string-array>
 
     <!-- Product Descriptions -->
@@ -25,13 +25,13 @@
     </string-array>
 
     <!-- Product Prices -->
-    <string-array name="electronics_prices">
+    <integer-array name="electronics_prices">
         <item>14999</item>
         <item>52999</item>
         <item>2999</item>
         <item>1499</item>
         <item>1799</item>
-    </string-array>
+    </integer-array>
 
     <!-- Product Image Resource Names -->
     <string-array name="electronics_images">

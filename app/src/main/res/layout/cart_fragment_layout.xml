@@ -6,23 +6,36 @@
     android:orientation="vertical"
     android:padding="12dp"
     android:background="#F8F8F8">
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Your Cart"
         android:textSize="24dp"
         android:textStyle="bold"
+        android:layout_weight="1"
         android:padding="8dp"
         android:textColor="@color/black" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove all"
+            android:id="@+id/clear_list"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/cart_recycler_view"
         android:layout_weight="1"
         android:padding="4dp" />
 
+
     <TextView
-        android:id="@+id/totalAmountText"
+        android:id="@+id/totalamount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Total: 0"
