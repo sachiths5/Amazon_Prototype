@@ -100,4 +100,15 @@ Context context;
     public void setCategory_image(int category_image) {
         this.category_image = category_image;
     }
-}
+     // In CategoryDataModel.product_details
+     private int quantity = 0;
+
+     public int getQuantity() {
+         return quantity;
+     }
+
+     public void setQuantity(int quantity) {
+         this.quantity = quantity;
+     }
+
+ }

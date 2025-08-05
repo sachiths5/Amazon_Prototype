@@ -179,5 +179,16 @@ public class CategoryDataModel implements Parcelable {
         public void setImage(int image) {
             this.image = image;
         }
+
+        private int quantity = 0;
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+
     }
 }

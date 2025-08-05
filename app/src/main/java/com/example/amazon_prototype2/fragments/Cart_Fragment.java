@@ -60,18 +60,13 @@ public class Cart_Fragment extends Fragment {
         cartRecyclerView = view.findViewById(R.id.cart_recycler_view);
         totalamount = view.findViewById(R.id.totalamount);
         clear_list = view.findViewById(R.id.clear_list);
-        cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        Button orderbutton=view.findViewById(R.id.checkoutButton);
-        orderbutton.setOnClickListener(v -> {
-            if(cartList!=null&&!cartList.isEmpty()){
-            Intent intent=new Intent(requireActivity(), PaymentActivity.class);
-            startActivity(intent);}
+        Button orderbutton = view.findViewById(R.id.checkoutButton);
 
-        });
+        cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         cartList = CartManager.getCartList();
+        cartAdapter = new CartAdapter(cartList,this);
 
-        cartAdapter = new CartAdapter(cartList);
         if (cartList == null || cartList.isEmpty()) {
             clear_list.setVisibility(INVISIBLE);
             cartAdapter.setShowRemoveButton(false);
@@ -80,6 +75,17 @@ public class Cart_Fragment extends Fragment {
         }
 
         cartRecyclerView.setAdapter(cartAdapter);
+
+        calculateAndDisplayTotal();
+
+        orderbutton.setOnClickListener(v -> {
+            if (cartList != null && !cartList.isEmpty()) {
+                int tot = calculateAndDisplayTotal();
+                Intent intent = new Intent(requireActivity(), PaymentActivity.class);
+                intent.putExtra("total", tot);
+                startActivity(intent);
+            }
+        });
 
         clear_list.setOnClickListener(v -> {
             CartManager.clearCart();
@@ -91,11 +97,9 @@ public class Cart_Fragment extends Fragment {
                 ((MainActivity) getActivity()).removeBadgeFromCart();
             }
         });
-
-        calculateAndDisplayTotal();
     }
 
-    public void calculateAndDisplayTotal() {
+    public int calculateAndDisplayTotal() {
         double total = 0;
 
         if (cartList != null) {
@@ -110,19 +114,30 @@ public class Cart_Fragment extends Fragment {
 
         NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
         totalamount.setText("Total: " + format.format(total));
+
+        return (int) total;
     }
 
     static class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
+
         private final ArrayList<CategoryDataModel.product_details> cartItems;
+        private final Cart_Fragment fragment;
         private boolean showRemoveButton = true;
 
-        public CartAdapter(ArrayList<CategoryDataModel.product_details> cartItems) {
+        public CartAdapter(ArrayList<CategoryDataModel.product_details> cartItems, Cart_Fragment fragment) {
             this.cartItems = cartItems;
+            this.fragment = fragment;
         }
 
         public void setShowRemoveButton(boolean show) {
             this.showRemoveButton = show;
+        }
+        int decrementprice(int totalprice,int price){
+            int price1=price;
+            int price2=totalprice;
+            return price2-price1;
+
         }
 
         @NonNull
@@ -140,8 +155,8 @@ public class Cart_Fragment extends Fragment {
             holder.productDescription.setText(item.getDesrciption());
             holder.productPrice.setText("₹" + item.getPrice());
             holder.productImage.setImageResource(item.getImage());
-            Context context = holder.itemView.getContext();
 
+            Context context = holder.itemView.getContext();
             if (context instanceof MainActivity) {
                 ((MainActivity) context).updateCartBadge(cartItems.size());
             }
@@ -150,18 +165,18 @@ public class Cart_Fragment extends Fragment {
 
             holder.remove.setOnClickListener(v -> {
                 int pos = holder.getAdapterPosition();
-                try {
-
-
                 if (pos != RecyclerView.NO_POSITION) {
                     cartItems.remove(pos);
                     notifyItemRemoved(pos);
                     notifyItemRangeChanged(pos, cartItems.size());
-                    if (context instanceof MainActivity) {
-                        ((MainActivity) context).updateCartBadge(cartItems.size());}
 
-                }}
-                catch (Exception ignored){};
+
+                    if (context instanceof MainActivity) {
+                        ((MainActivity) context).updateCartBadge(cartItems.size());
+                    }
+                    fragment.calculateAndDisplayTotal();
+
+                }
             });
         }
 

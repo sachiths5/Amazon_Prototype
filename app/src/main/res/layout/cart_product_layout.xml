@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
     android:layout_margin="2dp"
     android:orientation="vertical">
 
@@ -11,6 +12,7 @@
         android:id="@+id/cardviewid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:elevation="4dp"
         android:radius="8dp">
 

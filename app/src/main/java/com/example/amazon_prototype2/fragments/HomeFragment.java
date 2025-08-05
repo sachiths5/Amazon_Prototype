@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment implements Category_Adapter.MyClickLi
                 handler.postDelayed(this, 3000);
             }
         };
-        handler.postDelayed(runnable,2000);
+        handler.postDelayed(runnable,4000);
 
     }
 

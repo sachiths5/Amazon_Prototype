@@ -1,7 +1,6 @@
 // CartManager.java
 package com.example.amazon_prototype2.model;
 
-import com.example.amazon_prototype2.model.CategoryDataModel;
 import java.util.ArrayList;
 
 public class CartManager {
@@ -24,7 +23,7 @@ public class CartManager {
     public static void clearCart() {
         cartList.clear();
     }
-    public static void removecart(int pos){
+    public static void removecart(CategoryDataModel.product_details pos){
         cartList.remove(pos);
     }
 }
